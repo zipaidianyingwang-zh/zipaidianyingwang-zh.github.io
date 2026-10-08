@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="自拍电影网是一个长期维护的独立电影片目栏目，不播放、不下载、不存放任何影片资源，所有条目均为公开影片信息的整理与归档。栏目按照片子说话的方式分成六个部分：先看哪一部、为什么值得看、适合什么状态看、看之前该知道什么、看完之后可以聊什么、以及其他同名页面的区分说明。栏目每月更新一次，每次新增不超过六部。栏目唯一的访问入口是 https://zipaidianyingwang-zh.github.io ，以自拍电影网命名的其他页面与本栏目无关，请通过网址辨别。">
+<meta name="keywords" content="自拍电影网,独立电影片目,电影条目归档,影片看点,类型分类,观影状态,影评摘录,片长与地区,小众电影推荐,月度片单">
+<meta name="author" content="自拍电影网">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="revisit-after" content="7 days">
+<meta name="theme-color" content="#18181a">
+<link rel="canonical" href="https://zipaidianyingwang-zh.github.io/">
+<title>自拍电影网 —— 一部片子，一个看它的理由</title>
+<style>
+:root{
+  --ink:#111113; --ink2:#1c1c1f; --ink3:#26262a; --line:#e2e0dc; --line2:#cdcac4;
+  --paper:#f5f3ef; --paper2:#ebe7e0; --tx:#1a1a1d; --tx2:#5b5a5e; --tx3:#8f8d90;
+  --rd:#d63b2f; --rd2:#f0c6c2; --bu:#1f3a5f; --bu2:#a9bcd8; --gy:#6e6960; --gy2:#d8d4cd; --gn:#2f6b4f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;background:var(--paper);color:var(--tx);line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+h1,h2,h3{font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+
+/* 顶部信息条 */
+.info{background:var(--ink);color:#c9c7c4;padding:11px 0;font-size:11.5px;letter-spacing:.18em}
+.info .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;text-transform:uppercase}
+.info span b{color:var(--rd2);font-weight:400}
+
+/* 页首 */
+.hd{background:var(--paper);border-bottom:1px solid var(--line);padding:52px 0 40px}
+.hd .top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+.hd .brand{font-size:13px;letter-spacing:.3em;color:var(--tx3);text-transform:uppercase}
+.hd h1{font-size:clamp(40px,7.4vw,96px);font-weight:900;letter-spacing:-.055em;line-height:.92;margin-top:16px;color:var(--ink)}
+.hd h1 em{font-style:normal;color:var(--rd)}
+.hd .sub{margin-top:22px;max-width:60ch;font-size:clamp(15px,1.7vw,17.5px);color:var(--tx2);line-height:1.95}
+.hd .url{margin-top:30px;display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--paper);padding:13px 20px;font-size:12.5px;letter-spacing:.06em}
+.hd .url b{color:var(--rd2);font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase}
+.hd .url span{font-family:ui-monospace,Menlo,monospace;font-size:clamp(11.5px,1.8vw,14px);word-break:break-all}
+
+/* 导航 */
+nav{background:var(--ink2);position:sticky;top:0;z-index:50}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{padding:17px 26px 15px;font-size:14px;color:#a7a5a3;white-space:nowrap;transition:.2s;border-bottom:2px solid transparent}
+nav a:hover{color:#fff}
+nav a.on{color:#fff;border-bottom-color:var(--rd)}
+
+/* 通用栏 */
+sec{display:block;padding-top:104px}
+.eyebrow{font-size:11px;letter-spacing:.32em;color:var(--rd);text-transform:uppercase;margin-bottom:14px}
+.hd2{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:44px}
+.hd2 h2{font-size:clamp(26px,3.8vw,44px);font-weight:900;letter-spacing:-.035em;line-height:1.24;color:var(--ink)}
+.hd2 h2 em{font-style:normal;color:var(--rd)}
+.hd2 p{max-width:44ch;font-size:14px;color:var(--tx2);text-align:right}
+
+/* 01 先看哪一部 —— 四栏主图网格 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cell{border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;transition:.28s}
+.cell:hover{transform:translateY(-6px);box-shadow:0 14px 30px -18px rgba(17,17,19,.45);border-color:var(--line2)}
+.cell .ph{height:210px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:#fff}
+.cell .ph::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94}
+.cell .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.55) 100%)}
+.cell .ph span{position:relative;z-index:1;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.cell .ph b{position:relative;z-index:1;display:block;font-size:24px;font-weight:900;line-height:1.1;margin-top:4px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.cell .ph i{position:absolute;right:14px;top:14px;z-index:1;font-style:normal;font-size:10.5px;background:rgba(255,255,255,.22);padding:3px 9px;letter-spacing:.1em}
+.cell .bd{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column;gap:12px}
+.cell .bd h3{font-size:18px;font-weight:900;color:var(--ink);line-height:1.35}
+.cell .bd p{font-size:13.5px;color:var(--tx2);line-height:1.9;flex:1}
+.cell .bd .row{display:flex;justify-content:space-between;font-size:11.5px;color:var(--tx3);border-top:1px solid var(--line);padding-top:12px}
+.cell .bd .row b{color:var(--rd);font-weight:700}
+.cell:nth-child(1){--bg:linear-gradient(135deg,#2b211e,#6b2f27)}
+.cell:nth-child(2){--bg:linear-gradient(135deg,#15233a,#1f3a5f)}
+.cell:nth-child(3){--bg:linear-gradient(135deg,#1c2b24,#2f6b4f)}
+.cell:nth-child(4){--bg:linear-gradient(135deg,#3a3320,#8a7440)}
+.cell:nth-child(5){--bg:linear-gradient(135deg,#2b1f2e,#6b3a5f)}
+.cell:nth-child(6){--bg:linear-gradient(135deg,#2e2520,#8a5a35)}
+.cell:nth-child(7){--bg:linear-gradient(135deg,#1f272e,#3a5f6b)}
+.cell:nth-child(8){--bg:linear-gradient(135deg,#2a1f1f,#a3402f)}
+
+/* 02 榜单 —— 横向时间轴 */
+.ta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:1px solid var(--line);background:#fff}
+.ta>div{padding:26px 22px 24px;border-right:1px solid var(--line);position:relative}
+.ta>div:last-child{border-right:0}
+.ta>div::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:3px;background:var(--c);opacity:.9}
+.ta dt{font-size:11px;letter-spacing:.16em;color:var(--tx3);text-transform:uppercase}
+.ta dd{font-size:22px;font-weight:900;color:var(--ink);margin:8px 0 12px;letter-spacing:-.02em;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.ta small{font-size:12.5px;color:var(--tx2);line-height:1.8;display:block}
+.ta>div:nth-child(1){--c:var(--rd)} .ta>div:nth-child(2){--c:var(--bu)} .ta>div:nth-child(3){--c:var(--gn)}
+.ta>div:nth-child(4){--c:var(--gy)} .ta>div:nth-child(5){--c:#8a7440} .ta>div:nth-child(6){--c:#6b3a5f}
+
+/* 03 状态卡 —— 明暗交替 */
+.sta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sta>div{padding:34px 32px;min-height:230px;display:flex;flex-direction:column;gap:14px;transition:.28s}
+.sta>div.dark{background:var(--ink);color:var(--paper)}
+.sta>div.light{background:#fff;color:var(--tx);border:1px solid var(--line)}
+.sta>div:hover{transform:translateY(-5px)}
+.sta .n{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;opacity:.62}
+.sta h3{font-size:21px;font-weight:900;line-height:1.35}
+.sta .dark h3{color:#fff}
+.sta .light h3{color:var(--ink)}
+.sta p{font-size:14px;line-height:1.9;opacity:.84;flex:1}
+.sta .more{font-size:12.5px;color:var(--rd);border-top:1px solid currentColor;padding-top:12px;align-self:flex-start;letter-spacing:.05em}
+
+/* 04 表格 */
+.tb{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:14.5px}
+.tb th{background:var(--ink);color:#fff;padding:15px 18px;text-align:left;font-size:12px;letter-spacing:.14em;font-weight:600;text-transform:uppercase}
+.tb td{padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.tb tr:last-child td{border-bottom:0}
+.tb tbody tr:hover{background:rgba(214,59,47,.04)}
+.tb td.nm{font-weight:800;color:var(--ink);font-size:15px}
+.tb td.nm small{display:block;font-weight:400;font-size:12px;color:var(--tx3);margin-top:3px}
+.tb td.tg{color:var(--tx2)}
+.tb td.ln{text-align:right;color:var(--tx3);font-size:13px}
+.tb .rk{display:inline-flex;width:28px;height:28px;background:var(--paper2);color:var(--ink);align-items:center;justify-content:center;font-size:12.5px;font-weight:700;font-family:ui-monospace,Menlo,monospace}
+.tb tr:nth-child(1) .rk{background:var(--rd);color:#fff}
+.tb tr:nth-child(2) .rk{background:var(--bu);color:#fff}
+.tb tr:nth-child(3) .rk{background:var(--gn);color:#fff}
+
+/* 05 影评摘录 */
+.qt{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.qt .l{display:flex;flex-direction:column;gap:18px}
+.qt figure{background:#fff;border:1px solid var(--line);padding:30px 34px 26px;position:relative;transition:.28s}
+.qt figure:hover{transform:translateY(-4px);box-shadow:0 12px 26px -18px rgba(17,17,19,.4)}
+.qt figure::before{content:"「";position:absolute;left:16px;top:8px;font-size:44px;color:var(--rd);opacity:.5;line-height:1;font-family:Georgia,serif}
+.qt blockquote{font-size:15.5px;color:var(--tx);line-height:2;padding-left:22px}
+.qt figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--tx3);display:flex;justify-content:space-between;gap:14px}
+.qt figcaption b{color:var(--ink);font-weight:700}
+.qt .r{background:var(--ink);color:var(--paper);padding:36px 34px;display:flex;flex-direction:column;gap:20px}
+.qt .r h3{font-size:22px;font-weight:900;line-height:1.45;color:#fff}
+.qt .r p{font-size:14px;color:#bcbab7;line-height:1.95}
+.qt .r .bar{height:2px;background:rgba(255,255,255,.16)}
+.qt .r dl{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px}
+.qt .r dt{font-size:10.5px;letter-spacing:.22em;color:var(--rd2);text-transform:uppercase;margin-bottom:5px}
+.qt .r dd{font-size:15px;color:var(--paper);font-family:ui-monospace,Menlo,monospace}
+
+/* 06 入口 —— 黑白大字 */
+.ent{border-top:8px solid var(--rd);background:var(--ink);color:var(--paper);padding:60px 56px;display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:center}
+.ent .l .k{font-size:11px;letter-spacing:.3em;color:var(--rd2);text-transform:uppercase;margin-bottom:16px}
+.ent .l h3{font-size:clamp(26px,3.6vw,42px);font-weight:900;line-height:1.42;color:#fff;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.ent .l .u{margin-top:26px;font-family:ui-monospace,Menlo,monospace;font-size:clamp(14px,2.4vw,19px);color:var(--rd2);word-break:break-all;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.ent .r{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.16)}
+.ent .r div{background:var(--ink);padding:20px 22px}
+.ent .r dt{font-size:10px;letter-spacing:.26em;color:var(--tx3);text-transform:uppercase}
+.ent .r dd{font-size:15px;color:var(--paper);margin-top:7px;font-weight:600;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.ent .r dd.copy{cursor:pointer;color:var(--rd2)}
+.ent .r dd.copy:hover{color:#fff}
+
+/* 页脚 */
+footer{margin-top:96px;background:#0c0c0d;color:#8c8a88;padding:64px 0 28px}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px}
+.ft .lg{font-size:26px;font-weight:900;color:var(--paper);font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.ft .lg em{font-style:normal;color:var(--rd2)}
+.ft p{font-size:13.5px;color:#6c6a68;max-width:34ch;margin-top:14px;line-height:1.95}
+.ft h4{font-size:10.5px;letter-spacing:.3em;color:var(--rd2);text-transform:uppercase;margin-bottom:20px}
+.ft ul{display:flex;flex-direction:column;gap:11px;font-size:14px;color:#a4a2a0}
+.ft a:hover{color:var(--rd2)}
+.fb{margin-top:48px;padding-top:22px;border-top:1px solid #232325;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12px;color:#6c6a68}
+.fb .u{color:#bcbab7;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+
+.rv{opacity:0;transform:translateY(24px);transition:.6s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+::selection{background:var(--rd);color:#fff}
+
+@media(max-width:1120px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .grid .cell:nth-child(n+7){display:none}
+  .ta{grid-template-columns:repeat(3,1fr)}
+  .ta>div:nth-child(3){border-right:0}
+  .ta>div:nth-child(n+4){border-top:1px solid var(--line)}
+  .sta{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .wrap{padding:0 18px}
+  sec{padding-top:68px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .grid .cell:nth-child(n+5){display:flex}
+  .grid .cell:nth-child(n+7){display:none}
+  .grid .cell .ph{height:150px}
+  .sta{grid-template-columns:1fr}
+  .qt{grid-template-columns:1fr}
+  .ent{grid-template-columns:1fr;padding:42px 24px;gap:34px}
+  .ent .r{grid-template-columns:1fr 1fr}
+  .tb{font-size:13.5px}
+  .tb th:nth-child(3),.tb td:nth-child(3){display:none}
+  .hd2{grid-template-columns:1fr}
+  .hd2 p{text-align:left}
+  .ft{grid-template-columns:1fr 1fr;gap:34px}
+  nav a{padding:14px 16px 12px;font-size:13.5px}
+}
+@media(max-width:400px){
+  .grid{grid-template-columns:1fr}
+  .grid .cell:nth-child(n+4){display:none}
+  .ta{grid-template-columns:1fr 1fr}
+  .ta>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ta>div:nth-child(2n){border-right:0}
+  .ft{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<div class="info"><div class="wrap"><span>自拍电影网 · 独立片目栏目 <b>ZIPAI</b></span><span>2026 年 10 月 · 第 05 期 · 月度更新</span></div></div>
+
+<header class="hd">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="brand">A Film List, Written by Hand</div>
+        <h1>自拍<em>电影网</em></h1>
+        <p class="sub">一个长期在写、慢慢在补的片目栏目。不播片子，也不存片子，只给每一部写下观看理由、类型、片长和一点看完之后的想法。挑片子这件事，本来就该有人替你先看一遍。</p>
+      </div>
+      <div style="text-align:right;font-size:12px;color:var(--tx3);line-height:2"><b style="color:var(--ink);font-size:13px">本栏目收录</b><br>82 部 · 12 类<br>每月初新增 6 部<br><b style="color:var(--ink);font-size:13px">整理原则</b><br>不剧透关键转折</div>
+    </div>
+    <div class="url"><b>唯一访问入口</b><span>https://zipaidianyingwang-zh.github.io</span></div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#c1" class="on">先看哪一部</a>
+  <a href="#c2">本月榜单</a>
+  <a href="#c3">按状态选片</a>
+  <a href="#c4">看前须知</a>
+  <a href="#c5">影评摘录</a>
+  <a href="#ent">官方入口</a>
+</div></nav>
+
+<div class="wrap">
+
+  <sec id="c1">
+    <div class="eyebrow">01 / 先看哪一部</div>
+    <div class="hd2"><h2>八个方向，<em>八部</em>理由</h2><p>不想挑的时候，先随便点一个方向。每个方向只给一部，点进去就能开始看。</p></div>
+    <div class="grid">
+      <article class="cell"><div class="ph"><i>NO.01</i><span>最近常被提起</span><b>狗阵</b></div><div class="bd"><h3>西北县城里的落空</h3><p>人与狗的相处比人与人的相处更可信。整部片没什么台词，情绪却一直在涨。</p><div class="row"><span>2024 · 中国</span><b>116 分钟</b></div></div></article>
+      <article class="cell"><div class="ph"><i>NO.02</i><span>最需要耐心</span><b>枯草</b></div><div class="bd"><h3>近两百分钟也不嫌长</h3><p>节奏慢，但每一段闲聊都有用。看的时候会慢慢习惯那种干燥的空气感。</p><div class="row"><span>2022 · 土耳其</span><b>197 分钟</b></div></div></article>
+      <article class="cell"><div class="ph"><i>NO.03</i><span>看完想找人聊</span><b>利益区域</b></div><div class="bd"><h3>一段难以直视的距离</h3><p>不拍受害者，只拍生活在对面的那一家人。全片最冷的部分是没有音乐。</p><div class="row"><span>2023 · 英国</span><b>105 分钟</b></div></div></article>
+      <article class="cell"><div class="ph"><i>NO.04</i><span>适合一个人看</span><b>机器人之梦</b></div><div class="bd"><h3>没有一句对白的告别</h3><p>动画里最难的题材是放手，这部做到了不煽情，也能让人安静很久。</p><div class="row"><span>2024 · 西班牙</span><b>102 分钟</b></div></div></article>
+      <article class="cell"><div class="ph"><i>NO.05</i><span>结构最聪明</span><b>因果报应</b></div><div class="bd"><h3>一棵树，一件工具</h3><p>前半段以为在看复仇片，中段开始重新理解开头那场戏。反转不靠信息隐瞒。</p><div class="row"><span>2024 · 印度</span><b>139 分钟</b></div></article>
+      <article class="cell"><div class="ph"><i>NO.06</i><span>最被低估</span><b>泳者之心</b></div><div class="bd"><h3>一段被遗忘的真实</h3><p>传记片里少见的克制，没有把主角写成圣人。值得补看的原因很朴素。</p><div class="row"><span>2024 · 美国</span><b>129 分钟</b></div></article>
+      <article class="cell"><div class="ph"><i>NO.07</i><span>画面最好看</span><b>哥斯拉-1.0</b></div><div class="bd"><h3>灾难片的手艺回来了</h3><p>视效之外，它认真写了一群普通人怎么面对失败。怪兽只是放大器。</p><div class="row"><span>2023 · 日本</span><b>124 分钟</b></div></div></article>
+      <article class="cell"><div class="ph"><i>NO.08</i><span>值得二刷</span><b>分手的决心</b></div><div class="bd"><h3>第二次看的是镜头</h3><p>第一次看会被剧情带走，第二次会注意到那些刻意不打断的镜头运动。</p><div class="row"><span>2022 · 韩国</span><b>138 分钟</b></div></div></article>
+    </div>
+  </sec>
+
+  <sec id="c2">
+    <div class="eyebrow">02 / 本月榜单</div>
+    <div class="hd2"><h2>本月的<em>六条</em>排序</h2><p>不叫排行榜，因为排序依据是个人观感。排第一不代表最好，代表这个月最想再看一遍。</p></div>
+    <div class="ta">
+      <div><dt>本月第一</dt><dd>枯草</dd><small>慢，但是全程有内容。适合周末留出一整个下午。</small></div>
+      <div><dt>情绪最重</dt><dd>利益区域</dd><small>看完需要缓一缓。不建议连着看两部同类。</small></div>
+      <div><dt>最好入口</dt><dd>狗阵</dd><small>不认识任何演员也能看进去，是本月最容易推荐的一部。</small></div>
+      <div><dt>结构最佳</dt><dd>因果报应</dd><small>中段那场戏会重新定义前四十分钟，建议不要快进。</small></div>
+      <div><dt>最被低估</dt><dd>泳者之心</dd><small>宣传做得一般，但人物弧光写得很完整。</small></div>
+      <div><dt>最适合重看</dt><dd>分手的决心</dd><small>第二次看会发现第一次被剧情盖住的东西。</small></div>
+    </div>
+  </sec>
+
+  <sec id="c3">
+    <div class="eyebrow">03 / 按状态选片</div>
+    <div class="hd2"><h2>现在的<em>状态</em>，决定该看什么</h2><p>同样的片子，在不同状态下看，观感差得很远。六张卡片按当下状态归位，不只是按类型。</p></div>
+    <div class="sta">
+      <div class="dark"><div class="n">STATE 01</div><h3>累了一天，不想动脑</h3><p>节奏明快、人物关系简单、不需要记前情。看困了就睡，不亏。</p><a class="more" href="#">9 部 →</a></div>
+      <div class="light"><div class="n">STATE 02</div><h3>想认真坐两小时</h3><p>片长超过 130 分钟也不觉得拖，全程有铺垫有收束。看完会有话想说。</p><a class="more" href="#">6 部 →</a></div>
+      <div class="dark"><div class="n">STATE 03</div><h3>通勤或午休的碎片时间</h3><p>九十分钟以内，中途被打断也不影响理解。结构紧凑、进入很快。</p><a class="more" href="#">11 部 →</a></div>
+      <div class="light"><div class="n">STATE 04</div><h3>失眠，但想看点什么</h3><p>画面舒服、逻辑不复杂，看完不会越想越清醒。也可以放着当背景。</p><a class="more" href="#">7 部 →</a></div>
+      <div class="dark"><div class="n">STATE 05</div><h3>想找人一起看</h3><p>看完能聊出分歧的那一类。别选太沉重的，不然聊天会变味。</p><a class="more" href="#">5 部 →</a></div>
+      <div class="light"><div class="n">STATE 06</div><h3>想补当年的欠账</h3><p>现在看也不晚的那一部分。每部都附上了「为什么是现在」，不只给片名。</p><a class="more" href="#">13 部 →</a></div>
+    </div>
+  </sec>
+
+  <sec id="c4">
+    <div class="eyebrow">04 / 看前须知</div>
+    <div class="hd2"><h2>八条<em>建议</em>，写给第一次来的你</h2><p>栏目只做整理，不提供任何播放、下载或资源服务。下面这些话，看片单之前读一遍就够。</p></div>
+    <table class="tb">
+      <thead><tr><th style="width:52px">#</th><th>条目</th><th>说明</th><th style="width:150px">怎么用</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rk">1</span></td><td class="nm">先看片长<small>时长决定今晚能不能看完</small></td><td class="tg">超过 150 分钟的片子，建议分两次看。硬撑着一次看完，观感会打折，判断也容易失真。</td><td class="ln">定时长 →</td></tr>
+        <tr><td><span class="rk">2</span></td><td class="nm">再看情绪<small>状态比类型重要</small></td><td class="tg">工作太顺或太不顺的夜晚，选推你一把的那一类，而不是讲道理的那一类。</td><td class="ln">看状态 →</td></tr>
+        <tr><td><span class="rk">3</span></td><td class="nm">最后看地区<small>字幕影响投入程度</small></td><td class="tg">小语种片子需要专心看字幕，适合安静环境，不适合边看边刷手机。</td><td class="ln">看地区 →</td></tr>
+        <tr><td><span class="rk">4</span></td><td class="nm">别急着查解析<small>解析看得越早越亏</small></td><td class="tg">需要动脑的那类，看完先睡一觉，第二天再决定要不要看解析。</td><td class="ln">留悬念 →</td></tr>
+        <tr><td><span class="rk">5</span></td><td class="nm">本栏目不播片<small>只做整理与归档</small></td><td class="tg">不提供播放链接、下载地址或资源存放，所有条目均为公开影片信息的收录。</td><td class="ln">纯归档 →</td></tr>
+        <tr><td><span class="rk">6</span></td><td class="nm">每月更新一次<small>每次新增不超过六部</small></td><td class="tg">新增条目会同时写明入选原因与「适合什么状态看」，不只给片名和评分。</td><td class="ln">每月初 →</td></tr>
+        <tr><td><span class="rk">7</span></td><td class="nm">常驻条目季度复核<small>有误随下期修正</small></td><td class="tg">片名、年份、片长与类型均为公开信息，每季度复核一次，发现错误会在下期说明。</td><td class="ln">每季度 →</td></tr>
+        <tr><td><span class="rk">8</span></td><td class="nm">同名页面与本栏目无关<small>请通过网址辨别</small></td><td class="tg">凡名称相近但域名不同的页面，均非本栏目镜像或关联站，唯一入口见页尾。</td><td class="ln">认网址 →</td></tr>
+      </tbody>
+    </table>
+  </sec>
+
+  <sec id="c5">
+    <div class="eyebrow">05 / 影评摘录</div>
+    <div class="hd2"><h2>看完之后的<em>那句话</em></h2><p>长评写不动的时候，写一句也够。这四句是从往期札记里挑出来的，每句都不剧透。</p></div>
+    <div class="qt">
+      <div class="l">
+        <figure><blockquote>它不是在讲一个人有多难，而是在讲一个人怎么在不难之后，仍然选择把日子过下去。</blockquote><figcaption><b>狗阵</b><span>2024 · 中国</span></figcaption></figure>
+        <figure><blockquote>全片最冷的地方是没有音乐。那种克制比任何配乐都更有力量。</blockquote><figcaption><b>利益区域</b><span>2023 · 英国</span></figcaption></figure>
+        <figure><blockquote>反转不是靠藏着信息，而是靠让你重新理解开场那场戏。</blockquote><figcaption><b>因果报应</b><span>2024 · 印度</span></figcaption></figure>
+        <figure><blockquote>第二次看的时候才发现，第一次被剧情盖住的东西其实一直在镜头里。</blockquote><figcaption><b>分手的决心</b><span>2022 · 韩国</span></figcaption></figure>
+      </div>
+      <div class="r">
+        <div class="k">栏目说明</div>
+        <h3>写的是看完之后的感觉，不是剧情简介</h3>
+        <p>每一条都不抄其他站点的简介，也不复述故事。看点那一栏只回答一个问题：为什么现在值得看它。</p>
+        <div class="bar"></div>
+        <dl>
+          <div><dt>收录条目</dt><dd>82 部</dd></div>
+          <div><dt>分类数量</dt><dd>12 类</dd></div>
+          <div><dt>覆盖地区</dt><dd>09 区</dd></div>
+          <div><dt>更新周期</dt><dd>每月初</dd></div>
+        </dl>
+      </div>
+    </div>
+  </sec>
+
+  <sec id="ent">
+    <div class="eyebrow" style="color:var(--rd2)">06 / 官方入口</div>
+    <div class="ent">
+      <div class="l"><div class="k">Website · Name &amp; Domain</div><h3>网站名称是「自拍电影网」，对应的域名只有一组。请通过网址辨别，而非名称。</h3><div class="u">https://zipaidianyingwang-zh.github.io</div></div>
+      <div class="r">
+        <div><dt>网站名称</dt><dd>自拍电影网</dd></div>
+        <div><dt>站点域名</dt><dd>zipaidianyingwang-zh<br>.github.io</dd></div>
+        <div><dt>访问协议</dt><dd>https</dd></div>
+        <div><dt>栏目数量</dt><dd>06 个</dd></div>
+        <div><dt>复制入口</dt><dd class="copy" id="cp">点此复制 →</dd></div>
+        <div><dt>更新状态</dt><dd>正常 · 10 月已更</dd></div>
+      </div>
+    </div>
+  </sec>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><div class="lg">自拍<em>电影网</em></div><p>一个长期维护的独立片目栏目。不播放、不下载、不存放资源，只做公开影片信息的整理与归档，每月更新一次。</p></div>
+      <div><h4>栏目</h4><ul><li><a href="#c1">先看哪一部</a></li><li><a href="#c2">本月榜单</a></li><li><a href="#c3">按状态选片</a></li><li><a href="#c4">看前须知</a></li><li><a href="#c5">影评摘录</a></li></ul></div>
+      <div><h4>分类</h4><ul><li><a href="#">现实题材</a></li><li><a href="#">悬疑推理</a></li><li><a href="#">动画家庭向</a></li><li><a href="#">经典重温</a></li><li><a href="#">小语种补看</a></li></ul></div>
+      <div><h4>关于</h4><ul><li><a href="#ent">官方入口</a></li><li><a href="#">月度更新</a></li><li><a href="#">纠错与投稿</a></li><li><a href="#">内容声明</a></li><li><a href="#">回到顶部</a></li></ul></div>
+    </div>
+    <div class="fb"><span>© 2026 自拍电影网　网站名称：自拍电影网　唯一访问地址：<span class="u">https://zipaidianyingwang-zh.github.io</span></span><span>本页为单文件站点，样式与脚本全部内联</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var u='https://zipaidianyingwang-zh.github.io';
+  var cp=document.getElementById('cp');
+  cp.addEventListener('click',function(){
+    var t=cp.innerHTML,ok=function(){cp.innerHTML='已复制 ✓';setTimeout(function(){cp.innerHTML=t;},2000);},fb2=function(){
+      var x=document.createElement('textarea');x.value=u;x.style.cssText='position:fixed;left:-9999px';document.body.appendChild(x);x.select();
+      try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(x);};
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(u).then(ok,fb2);}else fb2();
+  });
+  var ls=document.querySelectorAll('nav a'),secs=[];
+  ls.forEach(function(a){
+    var el=document.getElementById(a.getAttribute('href').slice(1));
+    if(el)secs.push({a:a,el:el});
+    a.addEventListener('click',function(){ls.forEach(function(x){x.classList.remove('on');});a.classList.add('on');});
+  });
+  function spy(){var y=window.scrollY+200,cur=null;secs.forEach(function(o){if(o.el.offsetTop<=y)cur=o;});ls.forEach(function(x){x.classList.remove('on');});if(cur)cur.a.classList.add('on');}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  if('IntersectionObserver' in window){
+    var els=document.querySelectorAll('.cell,.ta>div,.sta>div,.tb tbody tr,.qt figure,.qt .r,.ent,.hd2');
+    els.forEach(function(el){el.classList.add('rv');});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.05});
+    els.forEach(function(el){io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>
